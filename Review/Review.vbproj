@@ -6,13 +6,29 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{939C4E6A-22FF-49BE-8EBD-810A766A4559}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Review.My.MyApplication</StartupObject>
+    <StartupObject>Review.Program</StartupObject>
     <RootNamespace>Review</RootNamespace>
     <AssemblyName>Review</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,16 +62,88 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialSkin">
-      <HintPath>K:\Pustaka\Pustaka\MaterialSkin\MaterialSkin.dll</HintPath>
+    <Reference Include="CryptSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CryptSharpOfficial.2.1.0.0\lib\CryptSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.0\lib\net451\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -81,13 +169,152 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="Administrasi\Admin.Designer.vb">
+      <DependentUpon>Admin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Admin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
+    <Compile Include="Administrasi\Akun\addLevel.Designer.vb">
+      <DependentUpon>addLevel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Akun\addLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Akun\Manager.Designer.vb">
+      <DependentUpon>Manager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Akun\Manager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Hapus.Designer.vb">
+      <DependentUpon>Hapus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Hapus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Lanjutan\SettingVerify2.Designer.vb">
+      <DependentUpon>SettingVerify2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Lanjutan\SettingVerify2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Lanjutan\SettingVerify.Designer.vb">
+      <DependentUpon>SettingVerify.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Lanjutan\SettingVerify.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Lanjutan\Setting\Setting.Designer.vb">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Lanjutan\Setting\Setting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Pengguna\AddUser.Designer.vb">
+      <DependentUpon>AddUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Pengguna\AddUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Pengolahan.Designer.vb">
+      <DependentUpon>Pengolahan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Pengolahan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Statistik\Pengikut.Designer.vb">
+      <DependentUpon>Pengikut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Statistik\Pengikut.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Statistik\Penilaian.Designer.vb">
+      <DependentUpon>Penilaian.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Statistik\Penilaian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Statistik\Surveyor.Designer.vb">
+      <DependentUpon>Surveyor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Statistik\Surveyor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Laporan\ExportExcel\Export2Excel.Designer.vb">
+      <DependentUpon>Export2Excel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Laporan\ExportExcel\Export2Excel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Laporan\LBiodata\frmBiodataOverview.Designer.vb">
+      <DependentUpon>frmBiodataOverview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Laporan\LBiodata\frmBiodataOverview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Laporan\LPendaftaranPenuh\frmLDaftar2.Designer.vb">
+      <DependentUpon>frmLDaftar2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Laporan\LPendaftaranPenuh\frmLDaftar2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Laporan\LPendaftaranSingkat\Daftar1.Designer.vb">
+      <DependentUpon>Daftar1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Laporan\LPendaftaranSingkat\Daftar1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrasi\Form1.designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Kuisioner\FormAwal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kuisioner\FormAwal.Designer.vb">
+      <DependentUpon>FormAwal.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Laporan\LPenilaian\frmLPenilaian.Designer.vb">
+      <DependentUpon>frmLPenilaian.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Laporan\LPenilaian\frmLPenilaian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PATCHDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PATCHDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PATCHDataSetKesan.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PATCHDataSetKesan.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Pendaftaran\Join.Designer.vb">
+      <DependentUpon>Join.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pendaftaran\Join.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kuisioner\Kesan.Designer.vb">
+      <DependentUpon>Kesan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Kuisioner\Kesan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pustaka\ExportDatasetToExcel.vb" />
+    <Compile Include="Pustaka\FirstInstall\FirstInstall.Designer.vb">
+      <DependentUpon>FirstInstall.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pustaka\FirstInstall\FirstInstall.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pustaka\Login.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -103,19 +330,146 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Pendaftaran\Pentup2.Designer.vb">
+      <DependentUpon>Pentup2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pendaftaran\Pentup2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kuisioner\Penutup.Designer.vb">
+      <DependentUpon>Penutup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Kuisioner\Penutup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kuisioner\SesiDua.Designer.vb">
+      <DependentUpon>SesiDua.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Kuisioner\SesiDua.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kuisioner\SesiSatu.Designer.vb">
+      <DependentUpon>SesiSatu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Kuisioner\SesiSatu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kuisioner\Utama.Designer.vb">
+      <DependentUpon>Utama.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Kuisioner\Utama.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pustaka\Program.vb" />
+    <Compile Include="Pustaka\Register.vb" />
+    <Compile Include="Pustaka\Varlist.vb" />
+    <Compile Include="Administrasi\Verify.Designer.vb">
+      <DependentUpon>Verify.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrasi\Verify.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Administrasi\Admin.resx">
+      <DependentUpon>Admin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Akun\addLevel.resx">
+      <DependentUpon>addLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Akun\Manager.resx">
+      <DependentUpon>Manager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Hapus.resx">
+      <DependentUpon>Hapus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Lanjutan\SettingVerify2.resx">
+      <DependentUpon>SettingVerify2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Lanjutan\SettingVerify.resx">
+      <DependentUpon>SettingVerify.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Lanjutan\Setting\Setting.resx">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Pengguna\AddUser.resx">
+      <DependentUpon>AddUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Pengolahan.resx">
+      <DependentUpon>Pengolahan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Statistik\Pengikut.resx">
+      <DependentUpon>Pengikut.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Statistik\Penilaian.resx">
+      <DependentUpon>Penilaian.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Statistik\Surveyor.resx">
+      <DependentUpon>Surveyor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laporan\ExportExcel\Export2Excel.resx">
+      <DependentUpon>Export2Excel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laporan\LBiodata\frmBiodataOverview.resx">
+      <DependentUpon>frmBiodataOverview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laporan\LBiodata\rptBiodata.rdlc" />
+    <EmbeddedResource Include="Laporan\LPendaftaranPenuh\frmLDaftar2.resx">
+      <DependentUpon>frmLDaftar2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laporan\LPendaftaranPenuh\rptDaftar2.rdlc" />
+    <EmbeddedResource Include="Laporan\LPendaftaranSingkat\Daftar1.resx">
+      <DependentUpon>Daftar1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kuisioner\FormAwal.resx">
+      <DependentUpon>FormAwal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laporan\LPendaftaranSingkat\rptDaftar1.rdlc" />
+    <EmbeddedResource Include="Laporan\LPenilaian\frmLPenilaian.resx">
+      <DependentUpon>frmLPenilaian.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laporan\LPenilaian\rptPenilaian.rdlc" />
+    <EmbeddedResource Include="Pendaftaran\Join.resx">
+      <DependentUpon>Join.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kuisioner\Kesan.resx">
+      <DependentUpon>Kesan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pendaftaran\Pentup2.resx">
+      <DependentUpon>Pentup2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kuisioner\Penutup.resx">
+      <DependentUpon>Penutup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kuisioner\SesiDua.resx">
+      <DependentUpon>SesiDua.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kuisioner\SesiSatu.resx">
+      <DependentUpon>SesiSatu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kuisioner\Utama.resx">
+      <DependentUpon>Utama.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrasi\Verify.resx">
+      <DependentUpon>Verify.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pustaka\FirstInstall\FirstInstall.resx">
+      <DependentUpon>FirstInstall.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -125,7 +479,160 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PATCHDataSet.xsc">
+      <DependentUpon>PATCHDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PATCHDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PATCHDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PATCHDataSet.xss">
+      <DependentUpon>PATCHDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PATCHDataSetKesan.xsc">
+      <DependentUpon>PATCHDataSetKesan.xsd</DependentUpon>
+    </None>
+    <None Include="PATCHDataSetKesan.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PATCHDataSetKesan.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PATCHDataSetKesan.xss">
+      <DependentUpon>PATCHDataSetKesan.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\Facebook_Like_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flat-simple-wallpaper-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flat-simple-wallpaper-20.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete_12px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Administrative Tools_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eye_18px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Registration_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IdentificationDocuments_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sad_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Boring_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Happy_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMS_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMS_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sent_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sent_36px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Confetti_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LINE_36px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Instagram Old_36px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blogger_36px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Book Shelf_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spinner-loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ezgif-4-bbe2b252d5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Literature_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <None Include="Resources\Ein Buch.png" />
+    <None Include="Resources\Webp.net-resizeimage1.png" />
+    <None Include="Resources\Warning Shield_32px.png" />
+    <None Include="Resources\Key 2_36px1.png" />
+    <None Include="Resources\User_36px.png" />
+    <None Include="Resources\Settings_36px.png" />
+    <None Include="Resources\Print_36px.png" />
+    <None Include="Resources\Trash Can_36px.png" />
+    <None Include="Resources\Microsoft Excel_36px.png" />
+    <None Include="Resources\Settings_96px.png" />
+    <None Include="Resources\Settings_48px1.png" />
+    <None Include="Resources\Key 2_36px.png" />
+    <None Include="Resources\Key 2_18px.png" />
+    <None Include="Resources\Warning Shield_48px.png" />
+    <None Include="Resources\Search_32px.png" />
+    <None Include="Resources\Print_96px.png" />
+    <None Include="Resources\451.gif" />
+    <None Include="Resources\Trash Can_32px.png" />
+    <None Include="Resources\Erase_96px.png" />
+    <None Include="Resources\Webp.net-resizeimage.png" />
+    <None Include="Resources\Close Window_32px.png" />
+    <None Include="Resources\32.gif" />
+    <None Include="Resources\45.gif" />
+    <None Include="Resources\Load-Perfect.gif" />
+    <None Include="Resources\load3.gif" />
+    <None Include="Resources\Microsoft Excel_72px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
